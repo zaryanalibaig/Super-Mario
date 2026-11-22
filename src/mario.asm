@@ -17,26 +17,24 @@ start:
     mov ss, ax
     mov sp, 0FFFEh
 
-    cld
+    mov ax, 0x0013
+    int 0x10
 
-    mov ax, 0013h
-    int 10h
-    mov ax,0A000h
-    mov es,ax
-    push word 10
-    push word 10
-    push word 30h
-    push word 40h
-    push word 0015h
-    call fill_rect
-    xor ah,ah
-    int 16h
+    ; Set video memory segment
+    mov ax, 0xA000
+    mov es, ax
 
+    ; Draw first screen (columns 0-19)
+    push word 0
+    call drawLevel
 
-    mov ax, 0003h
-    int 10h
+    ; Wait for a key
+    mov ah, 0
+    int 0x16
 
-
+    ; Return to text mode
+    mov ax, 0x0003
+    int 0x10
 
     jmp ExitToDos
 

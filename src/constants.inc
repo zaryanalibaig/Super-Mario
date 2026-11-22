@@ -10,6 +10,7 @@ TILE_HEIGHT        equ 16
 ; Level dimensions
 LEVEL_WIDTH        equ 60
 LEVEL_HEIGHT       equ 12
+LEVEL_SIZE   equ LEVEL_WIDTH * LEVEL_HEIGHT
 
 ; Visible tile grid
 VISIBLE_COLUMNS    equ 20
@@ -60,3 +61,18 @@ TILE_PIPE_BODY_RIGHT equ 9
 TILE_STAIR equ 10
 TILE_COIN equ 11
 TILE_FLAG_POLE equ 12
+
+tile_colours:
+    db 0x0B    ; 0  sky
+    db 0x06    ; 1  ground
+    db 0x06    ; 2  brick
+    db 0x0E    ; 3  ? block (coin)
+    db 0x0A    ; 4  ? block (mushroom)
+    db 0x08    ; 5  empty block
+    db 0x02    ; 6  pipe top-left
+    db 0x02    ; 7  pipe top-right
+    db 0x02    ; 8  pipe body-left
+    db 0x02    ; 9  pipe body-right
+    db 0x06    ; 10 stair block
+    db 0x0E    ; 11 coin
+    db 0x0F    ; 12 flag pole
