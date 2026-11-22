@@ -10,6 +10,7 @@ TILE_HEIGHT        equ 16
 ; Level dimensions
 LEVEL_WIDTH        equ 60
 LEVEL_HEIGHT       equ 12
+LEVEL_SIZE   equ LEVEL_WIDTH * LEVEL_HEIGHT
 
 ; Visible tile grid
 VISIBLE_COLUMNS    equ 20
@@ -36,7 +37,7 @@ KEY_SPACE          equ 39h
 KEY_SHIFT          equ 2Ah
 KEY_ESCAPE         equ 01h
 KEY_ENTER          equ 1Ch
-
+KEY_PAUSE equ 19h
 
 ; VGA palette indices
 COLOR_BLACK        equ 0
@@ -45,3 +46,33 @@ COLOR_GREEN        equ 2
 COLOR_RED          equ 4
 COLOR_BROWN        equ 6
 COLOR_WHITE        equ 15
+
+; Tile codes
+TILE_SKY	equ 0 	
+TILE_GROUND	equ 1
+TILE_BRICK	equ 2
+TILE_QUESTION_COIN equ 3
+TILE_QUESTION_MUSHROOM	equ 4
+TILE_EMPTY_BLOCK equ 5
+TILE_PIPE_TOP_LEFT equ 6
+TILE_PIPE_TOP_RIGHT equ 7
+TILE_PIPE_BODY_LEFT equ 8
+TILE_PIPE_BODY_RIGHT equ 9
+TILE_STAIR equ 10
+TILE_COIN equ 11
+TILE_FLAG_POLE equ 12
+
+tile_colours:
+    db 0x0B    ; 0  sky
+    db 0x06    ; 1  ground
+    db 0x06    ; 2  brick
+    db 0x0E    ; 3  ? block (coin)
+    db 0x0A    ; 4  ? block (mushroom)
+    db 0x08    ; 5  empty block
+    db 0x02    ; 6  pipe top-left
+    db 0x02    ; 7  pipe top-right
+    db 0x02    ; 8  pipe body-left
+    db 0x02    ; 9  pipe body-right
+    db 0x06    ; 10 stair block
+    db 0x0E    ; 11 coin
+    db 0x0F    ; 12 flag pole
