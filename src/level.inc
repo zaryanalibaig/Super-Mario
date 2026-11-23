@@ -40,7 +40,7 @@ mov cx,60
 mul cx
 add ax,bx
 mov bx,ax
-mov al,[original_map+bx]
+mov al,[working_map+bx]
 xor ah,ah
 getTile_end:
 pop dx
@@ -69,6 +69,32 @@ map_error:
 map_valid:
 pop ax
 ret
+; Name: reset_map
+; Functionality : restore the working copy of the level map from the original copy
+; No Inputs only the global_variables are used 
+; no ouput and all register are reserved
+
+reset_map:
+        push    es
+        push    si
+        push    di
+        push    cx
+        push    ds
+        pop     es              ; ES = DS
+
+        mov     si, original_map
+        mov     di, working_map
+        mov     cx, LEVEL_SIZE
+        cld
+        rep     movsb
+
+        pop     cx
+        pop     di
+        pop     si
+        pop     es
+        ret
+
+
 
 original_map:
 

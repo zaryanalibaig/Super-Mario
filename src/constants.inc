@@ -76,3 +76,22 @@ tile_colours:
     db 0x06    ; 10 stair block
     db 0x0E    ; 11 coin
     db 0x0F    ; 12 flag pole
+
+
+test_colours:
+    db 9        ; sky
+    db 2        ; ground top (green)
+    db 6        ; ground body (brown)
+    db 4        ; brick
+    db 10       ; pipe
+    db 12       ; Mario hat/shirt
+    db 14       ; coin / HUD text
+    db 6        ; Goomba
+    db 2        ; Koopa
+    db 12       ; mushroom cap
+    db 15       ; text / mushroom spots
+    db 0        ; HUD background
+    db 7        ; stair block
+    db 8        ; empty block
+    db 13       ; spare
+    db 1        ; spare
