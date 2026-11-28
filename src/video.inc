@@ -30,7 +30,12 @@ putpixel:
     pop bp
 
     ret 6
-
+; Name:      fill_rect
+; Purpose:   fill a solid rectangle with one colour in the segment ES points at
+; Inputs:    stack: x [bp+12], y [bp+10], width [bp+8], height [bp+6], colour [bp+4]
+;            ES = segment to draw into
+; Outputs:   none
+; Registers: none chnaged
 
 fill_rect:
     push bp
@@ -40,46 +45,39 @@ fill_rect:
     push bx
     push cx
     push dx
+    push di
 
-    mov dx, [bp+8]
-    mov word [i], 0
-    mov word [j], 0
+    mov bx, [bp+6]      ; height
+    test bx, bx
+    jz .done            ; nothing to draw
 
-l1:
-    mov cx, [bp+6]
+    mov ax, [bp+10]     ; y
+    mov di, ax
+    shl ax, 8           ; y*256
+    shl di, 6           ; y*64
+    add di, ax          ; y*320
+    add di, [bp+12]     ; + x
 
-calling_putpixel:
-    mov ax, [bp+12]
-    add ax, [j]
-    push ax
+    mov dx, 320
+    sub dx, [bp+8]      ; 320 - width
 
-    mov ax, [bp+10]
-    add ax, [i]
-    push ax
+    mov al, [bp+4]
+    cld
 
-    mov ax, [bp+4]          ; color
-    push ax
+.row_loop:
+    mov cx, [bp+8]
+    rep stosb
+    add di, dx
+    dec bx
+    jnz .row_loop
 
-    call putpixel
-
-    inc word [i]
-    dec cx
-    jnz calling_putpixel
-
-    ; Now outer loop
-
-    inc word [j]
-    mov word [i], 0
-
-    dec dx
-    jnz l1
-
+.done:
+    pop di
     pop dx
     pop cx
     pop bx
     pop ax
     pop bp
-
     ret 10
 
 

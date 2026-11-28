@@ -1,7 +1,8 @@
-
 ; Screen Dimensions
 SCREEN_WIDTH       equ 320
 SCREEN_HEIGHT      equ 200
+
+VIEW_HEIGHT     equ 192         ; 12 rows * 16 px; the bottom 8 rows stay black
 
 ; Tile dimensions
 TILE_WIDTH         equ 16
@@ -95,3 +96,9 @@ test_colours:
     db 8        ; empty block
     db 13       ; spare
     db 1        ; spare
+
+
+BUFFER_PARAGRAPHS   equ 0FA0h       ; 4000 paragraphs * 16 = 64,000 bytes
+PROGRAM_PARAGRAPHS  equ 1000h       ; 4096 paragraphs = 64 KB kept for the .COM
+BUFFER_WORDS        equ 32000       ; 64,000 bytes / 2 (STOSW and MOVSW use words)
+MAX_HERO_X          equ 304         ; 320 - 16: rightmost position that fits

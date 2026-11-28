@@ -35,3 +35,19 @@ key_run_pressed     db 0
 
 game_state          db 0
 game_running        db 1
+
+
+frame_seg           dw 0                ; segment of the frame buffer (set by alloc_buffer)
+msg_alloc_failed    db 'Frame buffer allocation failed.', 13, 10, '$'
+
+
+camera_x        dw 0                ; world x of the left edge of the screen
+hero_x          dw HERO_START_X     ; Mario's WORLD x (whole pixels)
+hero_vx         dw 0                ; horizontal speed
+hero_face       dw 0                ; 0 = facing right, 1 = facing left
+
+LEVEL_PIXEL_WIDTH   equ LEVEL_WIDTH * TILE_WIDTH
+MAX_CAMERA_X        equ LEVEL_PIXEL_WIDTH - SCREEN_WIDTH
+WORLD_MAX_X         equ LEVEL_PIXEL_WIDTH - 16
+CAMERA_FOLLOW_X     equ 160
+HERO_START_X        equ 32
